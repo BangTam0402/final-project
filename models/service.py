@@ -24,7 +24,8 @@ class BathingService(CareService):
         super().__init__("S01", "Bathing")
 
     def calculate_price(self, pet):
-        return 50000 + pet.weight * 10000
+        breed_fee = 30000 if pet.breed.lower() in ["poodle", "persian", "british shorthair"] else 0
+        return 50000 + pet.weight * 10000 + breed_fee
 
 
 class TrimmingService(CareService):
@@ -32,13 +33,18 @@ class TrimmingService(CareService):
         super().__init__("S02", "Trimming")
 
     def calculate_price(self, pet):
-        return 80000 + pet.weight * 15000
+        breed_fee = 50000 if pet.breed.lower() in ["poodle", "persian"] else 0
+        return 80000 + pet.weight * 15000 + breed_fee
 
 
 class BoardingService(CareService):
-    def __init__(self, days):
+    def __init__(self, days=1):
         super().__init__("S03", "Boarding")
-        self.__days = days
+        self.__days = int(days)
+
+    @property
+    def days(self):
+        return self.__days
 
     def calculate_price(self, pet):
-        return self.__days * 100000 + pet.weight * 5000
+        return self.days * 100000 + pet.weight * 5000
