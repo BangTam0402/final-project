@@ -14,7 +14,7 @@ class DatabaseService:
         conn = self.connect()
         cursor = conn.cursor()
 
-        # Create table for pets
+        
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS pets (
                 pet_id TEXT PRIMARY KEY,
@@ -26,7 +26,7 @@ class DatabaseService:
             )
         """)
 
-        # Create table for products
+     
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS products (
                 product_id TEXT PRIMARY KEY,
@@ -36,7 +36,6 @@ class DatabaseService:
             )
         """)
 
-        # Check and handle table schema migration for invoices
         try:
             cursor.execute("PRAGMA table_info(invoices)")
             columns = cursor.fetchall()
@@ -46,7 +45,6 @@ class DatabaseService:
         except sqlite3.OperationalError:
             pass
 
-        # Create table for invoices with new schema
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS invoices (
                 invoice_id TEXT PRIMARY KEY,
@@ -121,7 +119,6 @@ class DatabaseService:
             for row in rows:
                 invoice_id, customer_name, pet_id, pet_name, pet_breed, services_json, products_json, discount_code, discount_amount, total, created_at = row
                 
-                # Find pet in pet service
                 pet = pet_service.search_pet_by_id(pet_id)
                 if not pet:
                     # Fallback to recreate a temporary pet object
@@ -133,7 +130,6 @@ class DatabaseService:
                     else:
                         pet = Bird(pet_id, pet_name, pet_breed, 0.5, 0.0)
                 
-                # Reconstruct care services from JSON string
                 care_services = []
                 if services_json:
                     try:
@@ -158,7 +154,6 @@ class DatabaseService:
                             elif s_name == "Boarding":
                                 care_services.append(BoardingService(1))
                 
-                # Reconstruct purchased products from JSON string
                 purchased_products = []
                 if products_json:
                     try:
@@ -228,7 +223,6 @@ class DatabaseService:
         cursor = conn.cursor()
         cursor.execute("DELETE FROM invoices")
         for invoice in invoices:
-            # Services as JSON
             services_list = []
             for s in invoice.care_services:
                 s_dict = {"name": s.name}

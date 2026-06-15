@@ -1,11 +1,10 @@
-# Python cache files
+
 __pycache__/
 *.pyc
 
-# Local data files & reports
+
 data/report.csv
 data/report.pdf
 data/invoice_*.pdf
 
-# SQLite DB (if you want to keep data clean, but normally store DB config/schema only)
-# data/pet_store.db
+

@@ -12,7 +12,7 @@ class Menu:
         self.database_service = DatabaseService()
 
     def load_data(self):
-        # 1. Tải dữ liệu Thú cưng
+       
         pets = self.database_service.load_pets()
         if pets:
             self.pet_service.pets.clear()
