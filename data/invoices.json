@@ -1,1 +1,33 @@
-[]
+[
+    {
+        "invoice_id": "I001",
+        "customer_name": "Tâm",
+        "pet_id": "78",
+        "pet_name": "Mỡ",
+        "pet_breed": "Anh lông ngắn",
+        "services": [
+            "Bathing",
+            "Trimming",
+            "Boarding"
+        ],
+        "services_detail": [
+            {
+                "name": "Bathing",
+                "days": 0
+            },
+            {
+                "name": "Trimming",
+                "days": 0
+            },
+            {
+                "name": "Boarding",
+                "days": 9
+            }
+        ],
+        "products": [],
+        "discount_code": "",
+        "discount_amount": 0.0,
+        "total": 2050000.0,
+        "created_at": "2026-06-16 00:07:32"
+    }
+]

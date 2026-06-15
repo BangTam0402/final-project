@@ -1,4 +1,7 @@
-class Pet:
+from abc import ABC, abstractmethod
+
+
+class Pet(ABC):
     def __init__(self, pet_id, name, breed, weight, price):
         self.__pet_id = pet_id
         self.name = name
@@ -52,6 +55,7 @@ class Pet:
             raise ValueError("Price cannot be negative")
         self.__price = value
 
+    @abstractmethod
     def get_info(self):
         return f"{self.pet_id} | {self.name} | {self.breed} | {self.weight}kg | {self.price:,.0f} VND"
 

@@ -1,1 +1,10 @@
-[]
+[
+    {
+        "type": "Cat",
+        "pet_id": "78",
+        "name": "Mỡ",
+        "breed": "Anh lông ngắn",
+        "weight": 34.0,
+        "price": 70000000.0
+    }
+]
